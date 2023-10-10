@@ -1,0 +1,23 @@
+{
+  "name": "lib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "rollup --config rollup.config.ts --configPlugin typescript -w",
+    "build": "rollup --config rollup.config.ts --configPlugin typescript",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.0.2",
+    "rollup-plugin-typescript2": "^0.36.0"
+  },
+  "dependencies": {
+    "@rollup/plugin-typescript": "^11.1.5"
+  }
+}
