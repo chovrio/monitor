@@ -21,6 +21,11 @@ const User = seq.define(
       defaultValue: false,
       comment: '是否为管理员',
     },
+    sites: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      comment: '用户持有站点id',
+    },
   },
   {
     // 是否要生成时间戳

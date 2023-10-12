@@ -33,3 +33,38 @@ export const userLoginError = {
   message: '用户密码错误',
   result: '',
 };
+
+export const tokenExpiredError = {
+  code: 403,
+  message: 'token已过期',
+  result: '',
+};
+export const jsonWebTokenError = {
+  code: 401,
+  message: '无效的token',
+  result: '',
+};
+
+export const siteInfoError = {
+  code: 400,
+  message: '站点信息不完整',
+  result: '',
+};
+
+export const addSiteError = {
+  code: 500,
+  message: '添加站点失败',
+  result: '',
+};
+
+export const findSiteError = {
+  code: 500,
+  message: '查询站点失败',
+  result: '',
+};
+
+export const siteExistError = {
+  code: 400,
+  message: '站点已存在',
+  result: '',
+};

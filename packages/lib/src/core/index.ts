@@ -21,7 +21,7 @@ class Tracker {
       process.env.NODE_ENV === 'development'
         ? 'http://localhost:4000/'
         : 'http://localhost:4001/';
-    const res = await fetch(`${url}/id/${id}`);
+    const res = await fetch(`${url}/site/${atob(id)}`);
     switch (res.status) {
       case 404:
         console.error('错误的id');
