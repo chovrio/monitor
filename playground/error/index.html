@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <script>
+    window.addEventListener(
+      'error',
+      (event) => {
+        console.dir(event.srcElement.currentSrc);
+        // tracker.send(errorInfo);
+      },
+      true
+    );
+  </script>
+
+  <!-- 图片、script、css加载错误，都能被捕获 ✅ -->
+  <img src="https://test.cn/×××.png" />
+  <script src="https://test.cn/×××.js"></script>
+  <link href="../../a" rel="stylesheet" />
+  <script></script>
+</html>

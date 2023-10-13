@@ -9,3 +9,7 @@ export const getURLQuery = (src: string) => {
       return pre;
     }, {});
 };
+
+export const getId = (src: string) => {
+  return src.split('?')[1];
+};

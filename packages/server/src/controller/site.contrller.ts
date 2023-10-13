@@ -1,7 +1,11 @@
 import { type Middleware } from 'koa';
 import { createSite, findSiteByInfo } from '../service/site.service';
-import { addSiteError } from '../constants/err.type';
-import { craeteOption } from '../service/option.service';
+import {
+  addSiteError,
+  findSiteOptionError,
+  siteOptionNotExist,
+} from '../constants/err.type';
+import { craeteOption, findSiteOption } from '../service/option.service';
 
 // 添加站点
 export const addSite: Middleware = async (ctx) => {
@@ -39,5 +43,25 @@ export const findSite: Middleware = async (ctx) => {
   } catch (error) {
     console.error('查询站点失败', error);
     ctx.app.emit('error', addSiteError, ctx);
+  }
+};
+
+export const findOption: Middleware = async (ctx) => {
+  const { option_id } = ctx.state.site;
+  try {
+    const res = await findSiteOption(option_id);
+    if (!res) {
+      console.error('查询站点配置失败', { option_id });
+      ctx.app.emit('error', siteOptionNotExist, ctx);
+      return;
+    }
+    ctx.body = {
+      code: 200,
+      message: '查询站点配置成功',
+      result: res,
+    };
+  } catch (error) {
+    console.error('查询站点配置失败', error);
+    ctx.app.emit('error', findSiteOptionError, ctx);
   }
 };

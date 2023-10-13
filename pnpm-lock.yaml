@@ -133,6 +133,9 @@ importers:
       koa-static:
         specifier: ^5.0.0
         version: 5.0.0
+      koa2-cors:
+        specifier: ^2.0.6
+        version: 2.0.6
       mysql2:
         specifier: ^3.6.1
         version: 3.6.1
@@ -158,6 +161,9 @@ importers:
       '@types/koa-static':
         specifier: ^4.0.2
         version: 4.0.2
+      '@types/koa2-cors':
+        specifier: ^2.0.3
+        version: 2.0.3
       '@types/uuid':
         specifier: ^9.0.5
         version: 9.0.5
@@ -167,6 +173,46 @@ importers:
       ts-node:
         specifier: ^10.9.1
         version: 10.9.1(@types/node@20.8.4)(typescript@5.2.2)
+
+  playground/asset_error:
+    dependencies:
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+    devDependencies:
+      '@types/react':
+        specifier: ^18.2.15
+        version: 18.2.27
+      '@types/react-dom':
+        specifier: ^18.2.7
+        version: 18.2.12
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^6.0.0
+        version: 6.7.5(@typescript-eslint/parser@6.7.5)(eslint@8.51.0)(typescript@5.2.2)
+      '@typescript-eslint/parser':
+        specifier: ^6.0.0
+        version: 6.7.5(eslint@8.51.0)(typescript@5.2.2)
+      '@vitejs/plugin-react':
+        specifier: ^4.0.3
+        version: 4.1.0(vite@4.4.11)
+      eslint:
+        specifier: ^8.45.0
+        version: 8.51.0
+      eslint-plugin-react-hooks:
+        specifier: ^4.6.0
+        version: 4.6.0(eslint@8.51.0)
+      eslint-plugin-react-refresh:
+        specifier: ^0.4.3
+        version: 0.4.3(eslint@8.51.0)
+      typescript:
+        specifier: ^5.0.2
+        version: 5.2.2
+      vite:
+        specifier: ^4.4.5
+        version: 4.4.11(@types/node@20.8.4)(sass@1.69.1)
 
 packages:
 
@@ -1266,6 +1312,12 @@ packages:
     dependencies:
       '@types/koa': 2.13.9
       '@types/koa-send': 4.1.4
+    dev: true
+
+  /@types/koa2-cors@2.0.3:
+    resolution: {integrity: sha512-FYsjEhrgEvvZJwzfKmEJJ+N+qLJ56iWMuvNM34CHrqJcLDhvYxd/bBwqEQ1UXy7muHEcFPS77nsqicFs/D0b/w==}
+    dependencies:
+      '@types/koa': 2.13.9
     dev: true
 
   /@types/koa@2.13.9:
@@ -2922,6 +2974,11 @@ packages:
       koa-send: 5.0.1
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /koa2-cors@2.0.6:
+    resolution: {integrity: sha512-JRCcSM4lamM+8kvKGDKlesYk2ASrmSTczDtGUnIadqMgnHU4Ct5Gw7Bxt3w3m6d6dy3WN0PU4oMP43HbddDEWg==}
+    engines: {node: '>= 7.6.0'}
     dev: false
 
   /koa@2.14.2:

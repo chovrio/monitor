@@ -25,7 +25,7 @@ export const findSiteByInfo = async (info: {
 }) => {
   const whereOpt = info;
   const res = await Site.findAll({
-    attributes: ['id', 'site', 'name', 'username'],
+    attributes: ['id', 'site', 'name', 'username', 'option_id'],
     where: whereOpt,
   });
   return res.map((item) => item.dataValues);

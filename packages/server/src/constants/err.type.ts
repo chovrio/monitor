@@ -68,3 +68,26 @@ export const siteExistError = {
   message: '站点已存在',
   result: '',
 };
+export const siteNotExistError = {
+  code: 400,
+  message: '站点不存在',
+  result: '',
+};
+
+export const userInfoError = {
+  code: 403,
+  message: '不匹配的用户信息',
+  result: '',
+};
+
+export const siteOptionNotExist = {
+  code: 401,
+  message: '站点配置不存在',
+  result: '',
+};
+
+export const findSiteOptionError = {
+  code: 500,
+  message: '查询站点失败',
+  result: '',
+};

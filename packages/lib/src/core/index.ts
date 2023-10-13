@@ -1,27 +1,36 @@
-import { getURLQuery } from '../utils';
+import { getId } from '../utils';
 import type { TrackerOption } from '../types';
 
-class Tracker {
+export class Tracker {
   BASE_URL: string;
   id: string;
+  plugins?: Array<(tracker: Tracker) => void>;
   constructor(option: TrackerOption) {
     this.BASE_URL = option.requestURL;
     this.id = option.id;
+    this.plugins = option.plugins ?? [];
+    this.init();
+  }
+  init() {
+    // 使用所有插件函数
+    this.plugins?.some((plugin) => plugin(this));
+  }
+  post(url: string, option: Record<string, any>) {
+    return new Promise(() => {});
   }
 }
 
 (async () => {
   const scripts = document.querySelectorAll('script');
   const src = scripts[0].src;
-  const id = getURLQuery(src).id;
+  const id = getId(src);
   if (id === void 0) {
     console.error('无id');
   } else {
-    const url =
-      process.env.NODE_ENV === 'development'
-        ? 'http://localhost:4000/'
-        : 'http://localhost:4001/';
-    const res = await fetch(`${url}/site/${atob(id)}`);
+    const url = 'http://localhost:4000';
+    const res = await fetch(`${url}/site/${id}`);
+    const data = await res.json();
+    console.log(data);
     switch (res.status) {
       case 404:
         console.error('错误的id');
@@ -34,6 +43,7 @@ class Tracker {
         (window as any)['tracker'] = new Tracker({
           id,
           requestURL: url,
+          plugins: [],
         });
       }
     }
