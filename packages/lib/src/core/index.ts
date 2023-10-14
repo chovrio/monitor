@@ -1,5 +1,6 @@
 import { getId } from '../utils';
 import type { TrackerOption } from '../types';
+import { monitorBasicInfo } from './basic';
 
 export class Tracker {
   BASE_URL: string;
@@ -43,7 +44,7 @@ export class Tracker {
         (window as any)['tracker'] = new Tracker({
           id,
           requestURL: url,
-          plugins: [],
+          plugins: [monitorBasicInfo],
         });
       }
     }
