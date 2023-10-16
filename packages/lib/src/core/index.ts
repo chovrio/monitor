@@ -1,6 +1,7 @@
 import { getId } from '../utils';
 import type { TrackerOption } from '../types';
 import { monitorBasicInfo } from './basic';
+import { monitorErrorInfo } from './error';
 
 export class Tracker {
   BASE_URL: string;
@@ -31,8 +32,7 @@ export class Tracker {
     const url = 'http://localhost:4000';
     const res = await fetch(`${url}/site/${id}`);
     const data = await res.json();
-    console.log(data);
-    switch (res.status) {
+    switch (data.code) {
       case 404:
         console.error('错误的id');
         break;
@@ -44,7 +44,7 @@ export class Tracker {
         (window as any)['tracker'] = new Tracker({
           id,
           requestURL: url,
-          plugins: [monitorBasicInfo],
+          plugins: [monitorBasicInfo, monitorErrorInfo],
         });
       }
     }

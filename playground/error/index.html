@@ -6,9 +6,8 @@
   <script>
     window.addEventListener(
       'error',
-      (event) => {
-        console.dir(event.srcElement.currentSrc);
-        // tracker.send(errorInfo);
+      (error) => {
+        console.log('捕获到异常：', error);
       },
       true
     );
@@ -17,6 +16,11 @@
   <!-- 图片、script、css加载错误，都能被捕获 ✅ -->
   <img src="https://test.cn/×××.png" />
   <script src="https://test.cn/×××.js"></script>
-  <link href="../../a" rel="stylesheet" />
-  <script></script>
+  <link href="https://test.cn/×××.css" rel="stylesheet" />
+
+  <script>
+    // new Image错误，不能捕获 ❌
+    // new Image运用的比较少，可以自己单独处理
+    new Image().src = 'https://test.cn/×××.png';
+  </script>
 </html>

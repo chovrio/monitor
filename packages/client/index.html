@@ -22,6 +22,14 @@
         s.parentNode.insertBefore(hm, s);
       })();
     </script>
+    <script>
+      window.onerror = function (e) {
+        console.log(e, 'onerror');
+      };
+      window.addEventListener('error', (e) => {
+        console.log(e, 'error');
+      });
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
