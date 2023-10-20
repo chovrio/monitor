@@ -67,11 +67,12 @@ export const monitorBasicInfo: TrackerPlugin = (tracker) => {
             c = s.pathname,
             u = navigator.userAgent,
             d = i.split('?')[0];
-          tracker.post(`${tracker.BASE_URL}/data`, {
+          tracker.post(`basicInfo`, {
             app: 'shakespeare-performance',
             url: d,
             ua: u,
             path: c,
+            basicInfo: n,
             stats_ttfb: t.responseStart - t.requestStart,
             stats_domLoaded: t.domContentLoadedEventEnd - r,
             stats_loaded: t.loadEventEnd - r,

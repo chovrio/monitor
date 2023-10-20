@@ -24,6 +24,7 @@ export const monitorRouteInfo: TrackerPlugin = (tracker) => {
       window.addEventListener(event, (e) => {
         const newUrl = window.location.href;
         // const oldUrl = e.state && e.state.url;
+        console.log(e);
         tracker.post('/route/change', {
           type: event,
           newUrl,

@@ -1,3 +1,4 @@
+import FlushQueue from '../utils/flushStack';
 import { getId } from '../utils';
 import type { TrackerOption } from '../types';
 import { monitorBasicInfo } from './basic';
@@ -7,19 +8,35 @@ import { monitorRouteInfo } from './route';
 export class Tracker {
   BASE_URL: string;
   id: string;
+  flush: FlushQueue;
   plugins?: Array<(tracker: Tracker) => void>;
   constructor(option: TrackerOption) {
     this.BASE_URL = option.requestURL;
     this.id = option.id;
     this.plugins = option.plugins ?? [];
+    this.flush = new FlushQueue();
     this.init();
   }
   init() {
     // 使用所有插件函数
     this.plugins?.some((plugin) => plugin(this));
   }
-  post(url: string, option: Record<string, any>) {
-    return new Promise(() => {});
+  private reportTracker<T>(data: T) {
+    const params = Object.assign({}, data, { time: new Date() });
+    const headers = {
+      type: 'text/plain',
+    };
+    const blob = new Blob([JSON.stringify(params)], headers);
+    navigator.sendBeacon(`${this.BASE_URL}/tracker`, blob);
+  }
+  post(type: string, data: Record<string, any>) {
+    const task = () => {
+      this.reportTracker({
+        type,
+        data,
+      });
+    };
+    this.flush.push(task);
   }
 }
 
@@ -30,6 +47,25 @@ export class Tracker {
   if (id === void 0) {
     console.error('无id');
   } else {
+    // 兼容性问题
+    window.requestIdleCallback =
+      window.requestIdleCallback ||
+      function (handler) {
+        const startTime = Date.now();
+        return setTimeout(function () {
+          handler({
+            didTimeout: false,
+            timeRemaining: function () {
+              return Math.max(0, 50.0 - (Date.now() - startTime));
+            },
+          });
+        }, 1);
+      };
+    window.cancelIdleCallback =
+      window.cancelIdleCallback ||
+      function (id) {
+        clearTimeout(id);
+      };
     const url = 'http://localhost:4000';
     const res = await fetch(`${url}/site/${id}`);
     const data = await res.json();

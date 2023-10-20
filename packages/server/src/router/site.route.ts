@@ -1,6 +1,5 @@
 import Router from 'koa-router';
 import { auth } from '../middleware/auth.middleware';
-import Site from '../model/site.model';
 import { verifySite, verifySiteInfo } from '../validator/site.validator';
 import { crpySite } from '../middleware/site.middleware';
 import { addSite, findOption } from '../controller/site.contrller';

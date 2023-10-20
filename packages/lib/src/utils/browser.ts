@@ -8,7 +8,7 @@ export const getBrowserWindow = () => {
 export const createHistoryEvent = <T extends keyof History>(type: T) => {
   const origin = history[type];
   return function (this: any, ...args: any[]) {
-    const res = origin.aplly(this, args);
+    const res = origin.apply(this, args);
     const e = new Event(type);
     window.dispatchEvent(e);
     return res;
